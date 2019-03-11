@@ -1,0 +1,31 @@
+#/bin/bash
+# bc 一种高精度计算器语言,
+# 该程序用于计算每月的还贷金额。
+# 使用方法 bc xxx.bc
+
+PROGRAM=$(basename $0)
+function usage(){
+	cat <<- _EOF_
+		我也不知道要写点啥
+	_EOF_
+}
+
+# ${#} 展开字符串的长度
+if [[ $# != 3 ]]; then
+	usage
+	exit 3
+fi
+
+principal=$1
+interest=$2
+months=$3
+bc <<- EOF
+	scale=10
+	i=$interest/12
+	p=$principal
+	n=$months
+	a=p*((i*((1+i))^n))/(((1 + i) ^ n) - 1))
+	print a, "\n"
+EOF
+
+

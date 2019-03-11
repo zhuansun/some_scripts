@@ -1,0 +1,4 @@
+total 8
+-rw-r--r--  1 zhuansunpengcheng  staff    0 Feb 25 10:35 foo.txt
+-rw-r--r--@ 1 zhuansunpengcheng  staff  591 Feb 25 10:35 group_child.sh
+this is test
