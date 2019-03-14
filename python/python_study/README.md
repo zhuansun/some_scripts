@@ -9,3 +9,10 @@
 学习的过程中，参考的博客是：
 
 https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000
+
+
+# 记录自己的一点心得
+
+- 改模块下的所有.py的代码，运行在python 3.7.2，均是python内置库，并未引入其他依赖库
+- 使用的开发工具是 sublime3 和 pycharm 2017.02版本
+
