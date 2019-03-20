@@ -1,0 +1,35 @@
+#  rsync运行权限为root
+uid = root
+# rsync运行权限为root
+gid = root 
+# 是否让进程离开工作目录
+use chroot = no 
+# 最大并发连接数，0为不限制
+max connections = 5 
+# 超时时间
+timeout = 600 
+# 指定rsync的pid存放路径
+pid file = /var/run/rsyncd.pid 
+# 指定rsync的锁文件存放路径
+# lockfile = /var/run/rsyncd.lock
+# 指定rsync的日志存放路径 
+log file = /var/log/rsyncd.log 
+# 模块名称
+[web1] 
+	# 该模块存放文件的基础路径【修改服务器上需要同步的文件夹】
+	path = /home/xlei/data/www
+	# 忽略一些无关的I/O错误 
+	ignore errors = yes 
+	# 客户端可以上传
+	read only = no 
+	# 客户端可以下载
+	write only = no 
+	# 允许连接的客户端主机ip，*表示任何主机
+	hosts allow = *
+	# 黑名单，*表示任何主机
+	hosts deny = * 
+	list = yes
+	# 认证此模块的用户名
+	auth users = web 
+	# 指定存放“用户名：密码”格式的文件
+	secrets file = /etc/web.passwd 
