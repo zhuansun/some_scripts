@@ -28,3 +28,19 @@
 -d [ip] delete 删除ip服务上的rsync服务
 -s [ip] start  在ip服务器上 启动rsync服务，并自动同步本地配置
 -r [ip] [dir] rsync  开始同步服务器文件到本地[dir]目录中
+
+
+使用方法：
+
+- 1.修改rsync.local中的： 存放文件的基础路径【修改服务器上需要同步的文件夹】
+	- 你想同步服务器上的那个文件夹，就改成那个文件夹的绝对路径
+- 2.运行 ./auto_sync.sh -c xxx.xxx.xxx.xxx 
+	- 检查服务器上是否存在rsync服务，如果存在，会自动更新成最新版本，如果不存在，会自动安装
+- 3.运行 ./auto_sync.sh -s xxx.xxx.xxx.xxx
+	- 启动服务器上的rsync服务
+- 4.运行 ./auto_sync.sh -r xxx.xxx.xxx.xxx ~/Desktop/
+	- 开始同步，同步后的文件位于 ~/Desktop/
+
+
+
+
