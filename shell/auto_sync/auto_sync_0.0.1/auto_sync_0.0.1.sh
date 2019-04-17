@@ -65,15 +65,11 @@ function start_rsync(){
 
 #  开始同步
 function auto_sync(){
-	echo "正在准备同步数据到-->$3，请输入数据同步密码,如果忘记可以查看web.passwd： " 
+	echo "正在准备同步数据到-->，请输入数据同步密码,如果忘记可以查看web.passwd： " $3
 	rsync -avzP web@$2::web1 $3
-	# $? 可以获取上一条命令执行是否成功 0：成功
-	if [[ $? == 0 ]]; then
-		echo '同步成功，如果存在文件打不开的情况，请手动修改权限'
-	else
-		echo '同步失败，请参考错误信息，进行调整'
-	fi
 
+	# 同步完之后，需要修复文件权限
+	echo "数据已经同步完毕，如果打不开，请自行修复文件所属用户和所属权限"
 }
 
 #  程序运行期间，检查用户参数是否输入正确
@@ -82,9 +78,6 @@ if [[ ! $1 ]]; then
 	exit
 fi
 
-
-
-
 case $1 in
 	-h | --help )
 		# 输出帮助,程序结束
@@ -92,8 +85,6 @@ case $1 in
 		exit 0
 		;;
 	-c )
-		# check,检查服务器上是否有rsync服务
-
 		check_update $*
 		exit 0
 		;;
