@@ -6,6 +6,7 @@
 - shell_study : 个人学习shell过程中的笔记
 - auto_hexo : 简化hexo发布流程
 - auto_sync : 一键同步服务器的文件到本地
+- check_apollo : 检测apollo服务是否正在运行
 
 # python
 - python_study : 个人学习python过程中的笔记
