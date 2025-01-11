@@ -15,7 +15,7 @@ class DataObject:
     def __repr__(self):
         return f"DataObject(dataStr={self.dataStr}, mobileCount={self.mobileCount}, mobleStore={self.mobleStore}, vipMoney={self.vipMoney}, source={self.source})"
 
-def method1(data, source):
+def method1(data):
     # 创建一个空列表来存储解析后的对象
     result_objects = []
     
@@ -30,14 +30,14 @@ def method1(data, source):
             mobileCount=item['u_count1'],
             mobleStore=item['u_count2'],
             vipMoney=item['u_money3'],
-            source=source
+            source='BAIDU'
         )
         # 将解析后的对象添加到列表中
         result_objects.append(data_object)
     
     return result_objects
 
-def method2(data, source):
+def method2(data):
     # 创建一个空列表来存储解析后的对象
     result_objects = []
     
@@ -52,7 +52,7 @@ def method2(data, source):
             mobileCount=item['mobile_count'],
             mobleStore=item['store_count'],
             vipMoney=item['mobile_fencheng'],
-            source=source
+            source='QUARK'
         )
         # 将解析后的对象添加到列表中
         result_objects.append(data_object)
@@ -66,8 +66,8 @@ quarkUrl = 'https://dt.bd.cn/main/quark_list'
 
 bsList = [
     {"type":"BAIDU","bs":"4236298918"},
-    {"type":"QUARK-1","bs":"100187470341"},
-    {"type":"QUARK-2","bs":"100676748675"}
+    {"type":"QUARK","bs":"100187470341"},
+    {"type":"QUARK","bs":"100676748675"}
 ]
 
 # 请求头
@@ -87,7 +87,7 @@ cookies = {
 current_date = datetime.now()
 
 # 获取当前时间的前20天
-start_date = current_date - timedelta(days=10)
+start_date = current_date - timedelta(days=20)
 
 # 格式化日期为 YYYY-MM-DD
 formatted_start_date = start_date.strftime('%Y-%m-%d')
@@ -109,18 +109,19 @@ for item in bsList:
     data['bs'] = item["bs"]
 
     try:
-        if "BAIDU" in item["type"]:
+        if item["type"] == "BAIDU":
             # 发起 POST 请求
             response = requests.post(baiduUrl, headers=headers, cookies=cookies, data=data)
             # 调用 method1 处理 response.text，结果放进result_list中
-            result_list.extend(method1(response.text, item["type"]))
-        elif "QUARK" in item["type"]:
+            result_list.extend(method1(response.text))
+        elif item["type"] == "QUARK":
             # 发起 POST 请求
             response = requests.post(quarkUrl, headers=headers, cookies=cookies, data=data)
             # 调用 method2 处理 response.text，结果放进result_list中
-            result_list.extend(method2(response.text, item["type"]))
+            result_list.extend(method2(response.text))
     except requests.RequestException as e:
         print(f"请求错误: {e}")
 
-# 打印结果resuleList的json
-print(json.dumps(result_list, default=lambda o: o.__dict__, ensure_ascii=False))
+# 打印结果
+for result in result_list:
+    print(result)
