@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 import json
 
 
-
 class DataObject:
     def __init__(self, dataStr, mobileCount, mobleStore, vipMoney, source):
         self.dataStr = dataStr
