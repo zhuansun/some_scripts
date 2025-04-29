@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四象限工作法</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>四象限工作法</h1>
+        
+        <div class="nav-links">
+            <a href="/">四象限视图</a>
+            <a href="/list">任务列表</a>
+            <button id="show-add-task" class="add-task-btn">添加新任务</button>
+        </div>
+        
+        <div class="quadrants">
+            <div class="quadrant" id="urgent-important">
+                <h2>重要且紧急</h2>
+            </div>
+            <div class="quadrant" id="not-urgent-important">
+                <h2>重要但不紧急</h2>
+            </div>
+            <div class="quadrant" id="urgent-not-important">
+                <h2>紧急但不重要</h2>
+            </div>
+            <div class="quadrant" id="not-urgent-not-important">
+                <h2>不重要且不紧急</h2>
+            </div>
+        </div>
+    </div>
+    
+    <div class="task-form-modal" id="task-form-modal">
+        <div class="task-form">
+            <h2>添加新任务</h2>
+            <form id="add-task-form">
+                <div class="form-group">
+                    <label for="title">任务标题</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">任务描述</label>
+                    <textarea id="description" name="description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="quadrant">象限</label>
+                    <select id="quadrant" name="quadrant" required>
+                        <option value="urgent-important">重要且紧急</option>
+                        <option value="not-urgent-important">重要但不紧急</option>
+                        <option value="urgent-not-important">紧急但不重要</option>
+                        <option value="not-urgent-not-important">不重要且不紧急</option>
+                    </select>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit">添加任务</button>
+                    <button type="button" id="cancel-add-task" class="cancel-btn">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="task-details" id="task-details">
+        <h3 id="detail-title"></h3>
+        <p id="detail-description"></p>
+        <p><strong>创建时间：</strong> <span id="detail-created-at"></span></p>
+        <div class="task-actions">
+            <button id="complete-task" class="complete-btn">完成任务</button>
+            <button id="delete-task" class="delete-btn" style="background-color: #f44336;">删除任务</button>
+            <button id="close-details" style="background-color: #9e9e9e;">关闭</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html> 
