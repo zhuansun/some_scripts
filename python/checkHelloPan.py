@@ -4,7 +4,7 @@ import json
 
 # 定义目标URL
 url = "https://hwapi.vip.cpolar.cn/hw/hello/check"
-notifyUrl1 = "https://api.day.app/MuZnemfDhYUswqbjCXCgBd/HelloPanError/Check111"
+notifyUrl1 = "https://api.day.app/MuZnemfDhYUswqbjCXCgBd/HelloPanError/CheckError111"
 notifyUrl2 = "https://api.day.app/MuZnemfDhYUswqbjCXCgBd/HelloPanError/Check222"
 
 while True:

@@ -17,3 +17,7 @@ now = 85
 print("成绩提升了 %.1f%% " % ((85-72)/72*100))
 print("成绩提升了 {0:.1f}%".format((85-72)/72*100));
 #print('小明比去年成绩提升了{0:.1f}%'.format(r))
+
+age = input("请输入你的年龄")
+t = type(age)
+print(t)
